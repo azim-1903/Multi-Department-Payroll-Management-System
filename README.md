@@ -8,7 +8,7 @@ Fastify + PostgreSQL payroll application with department and employee management
 2. Clone the repository locally:
    - `git clone https://github.com/<your-username>/<repo-name>.git`
 3. Create a new .env file in the root directory of the project and add the following configuration:
-   -`PORT=3000
+   - `PORT=3000
      DATABASE_URL=postgresql://postgres:<your-username>@localhost:5432/payroll_db
      SESSION_SECRET=replace-with-your-strong-secret-key`
 4. Create the database:
