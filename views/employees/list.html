@@ -1,0 +1,42 @@
+<h1>Employees</h1>
+<div class="card row" style="justify-content:space-between;">
+  <form method="get" action="/employees" class="row">
+    <label>Filter by Department</label>
+    <select name="department_id">
+      <option value="">All Departments</option>
+      <% departments.forEach((d) => { %>
+        <option value="<%= d.id %>" <%= Number(selectedDepartmentId) === Number(d.id) ? "selected" : "" %>><%= d.name %></option>
+      <% }) %>
+    </select>
+    <button type="submit">Apply</button>
+  </form>
+  <a class="btn" href="/employees/new">Add Employee</a>
+</div>
+<div class="card">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th><th>Department</th><th>Position</th><th>Basic</th><th>Allowance</th><th>OT Hours</th><th>Hourly Rate</th><th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% employees.forEach((e) => { %>
+      <tr>
+        <td><%= e.name %></td>
+        <td><%= e.department_name %></td>
+        <td><%= e.position %></td>
+        <td><%= e.basic_salary %></td>
+        <td><%= e.allowance %></td>
+        <td><%= e.overtime_hours %></td>
+        <td><%= e.hourly_rate %></td>
+        <td class="row">
+          <a class="btn btn-secondary" href="/employees/<%= e.id %>/edit">Edit</a>
+          <form method="post" action="/employees/<%= e.id %>/delete" onsubmit="return confirm('Delete employee?');" style="margin:0;">
+            <button type="submit" class="btn-danger">Delete</button>
+          </form>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>

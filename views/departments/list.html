@@ -1,0 +1,27 @@
+<h1>Departments</h1>
+<div class="card">
+  <h2><%= editing ? "Edit Department" : "Add Department" %></h2>
+  <form method="post" action="<%= editing ? `/departments/${editing.id}` : "/departments" %>" class="row">
+    <input type="text" name="name" placeholder="Department name" required value="<%= editing ? editing.name : '' %>" />
+    <button type="submit"><%= editing ? "Update" : "Create" %></button>
+    <% if (editing) { %><a class="btn btn-secondary" href="/departments">Cancel</a><% } %>
+  </form>
+</div>
+<div class="card">
+  <table>
+    <thead><tr><th>Name</th><th>Actions</th></tr></thead>
+    <tbody>
+      <% departments.forEach((d) => { %>
+      <tr>
+        <td><%= d.name %></td>
+        <td class="row">
+          <a class="btn btn-secondary" href="/departments/<%= d.id %>/edit">Edit</a>
+          <form method="post" action="/departments/<%= d.id %>/delete" onsubmit="return confirm('Delete department?');" style="margin:0;">
+            <button type="submit" class="btn-danger">Delete</button>
+          </form>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,33 @@
+<% const monthName = months.find((m) => Number(m.value) ===
+Number(row.month))?.label || row.month; %>
+<h1>Payslip</h1>
+<div class="card" style="max-width: 700px">
+  <p><strong>Employee:</strong> <%= row.employee_name %></p>
+  <p><strong>Department:</strong> <%= row.department_name %></p>
+  <p><strong>Period:</strong> <%= monthName %> <%= row.year %></p>
+  <hr />
+  <p>Basic Salary: <strong><%= formatMoney(row.basic_salary) %></strong></p>
+  <p>Allowance: <strong><%= formatMoney(row.allowance) %></strong></p>
+  <p>Overtime Pay: <strong><%= formatMoney(row.overtime_pay) %></strong></p>
+  <hr />
+  <p>Gross Pay: <strong><%= formatMoney(row.gross_pay) %></strong></p>
+  <p>Tax (8%): <strong><%= formatMoney(row.tax) %></strong></p>
+  <p>
+    EPF Employee (11%): <strong><%= formatMoney(row.epf_employee) %></strong>
+  </p>
+  <p>
+    EPF Employer (13%, info only):
+    <strong><%= formatMoney(row.epf_employer) %></strong>
+  </p>
+  <hr />
+  <p>NET PAY: <strong><%= formatMoney(row.net_pay) %></strong></p>
+</div>
+<div style="margin-top: 20px">
+  <a href="/payroll/history" class="btn btn-secondary">Back to History</a>
+  <a href="/payroll/<%= row.id %>/export/pdf" class="btn btn-primary"
+    >Export as PDF</a
+  >
+  <a href="/payroll/<%= row.id %>/export/csv" class="btn btn-primary"
+    >Export as CSV</a
+  >
+</div>

@@ -1,0 +1,27 @@
+<h1><%= employee ? "Edit Employee" : "Create Employee" %></h1>
+<div class="card">
+  <form method="post" action="<%= action %>" class="row" style="flex-direction:column; align-items:stretch; max-width:640px;">
+    <label>Department</label>
+    <select name="department_id" required>
+      <% departments.forEach((d) => { %>
+        <option value="<%= d.id %>" <%= employee && Number(employee.department_id) === Number(d.id) ? "selected" : "" %>><%= d.name %></option>
+      <% }) %>
+    </select>
+    <label>Name</label>
+    <input type="text" name="name" required value="<%= employee ? employee.name : '' %>" />
+    <label>Position</label>
+    <input type="text" name="position" required value="<%= employee ? employee.position : '' %>" />
+    <label>Basic Salary</label>
+    <input type="number" step="0.01" min="0" name="basic_salary" required value="<%= employee ? employee.basic_salary : 0 %>" />
+    <label>Allowance</label>
+    <input type="number" step="0.01" min="0" name="allowance" required value="<%= employee ? employee.allowance : 0 %>" />
+    <label>Overtime Hours</label>
+    <input type="number" min="0" name="overtime_hours" required value="<%= employee ? employee.overtime_hours : 0 %>" />
+    <label>Hourly Rate</label>
+    <input type="number" step="0.01" min="0" name="hourly_rate" required value="<%= employee ? employee.hourly_rate : 0 %>" />
+    <div class="row">
+      <button type="submit"><%= employee ? "Update Employee" : "Create Employee" %></button>
+      <a class="btn btn-secondary" href="/employees">Back</a>
+    </div>
+  </form>
+</div>
